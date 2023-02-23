@@ -513,7 +513,7 @@ SingleQuotedStringCharacter
   : ~['\r\n\\] | ('\\' .) ;
 
 WS
-  : [ \t\r\n\u000C]+ -> skip ;
+  : [ \t\r\n\u000C]+ -> channel(HIDDEN);
 
 NatSpecSingleLine
   : '///' ~[\r\n]* -> channel(HIDDEN);
