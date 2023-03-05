@@ -1,4 +1,5 @@
 GRAMMAR=Solidity
+JAVA_PACKAGE=solidityparser
 START_RULE=sourceUnit
 GEN_DIR=$(CURDIR)
 
@@ -15,10 +16,10 @@ generate: $(GRAMMAR).g4 java-parser python3-parser
 java-parser: antlr-java java_classes
 
 antlr-java:
-	antlr4 $(GRAMMAR).g4 -visitor -o $(GEN_DIR)/parser/java
+	antlr4 -package $(JAVA_PACKAGE) $(GRAMMAR).g4 -visitor -o $(GEN_DIR)/parser/java/solidityparser
 
 java_classes:
-	$(JAVAC) $(wildcard $(GEN_DIR)/parser/java/*.java)
+	$(JAVAC) $(wildcard $(GEN_DIR)/parser/java/solidityparser/*.java)
 
 python3-parser: antlr-python3
 
